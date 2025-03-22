@@ -38,10 +38,10 @@ requirements:
     - pydantic-settings
 
 test:
-  imports:
-    - aiida_workgraph
   commands:
     - pip check
+    - verdi presto --profile-name test
+    - python -c "import aiida_workgraph"
     - workgraph --help
   requires:
     - pip
