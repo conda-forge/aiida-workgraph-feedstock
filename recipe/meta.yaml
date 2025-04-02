@@ -1,5 +1,5 @@
 {% set name = "aiida-workgraph" %}
-{% set version = "0.5.0" %}
+{% set version = "0.5.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/aiida_workgraph-{{ version }}.tar.gz
-  sha256: 9ee72b097dd93a8b514c35ac77bcce1d5da38746b43b514e2eb890b660398b00
+  sha256: b6c9d7442b52245114b904711c2124f162255bd3c04f84c59b8e89b981705102
 
 build:
   entry_points:
@@ -24,12 +24,12 @@ requirements:
   run:
     - jsonschema
     - node-graph-widget >=0.0.4
-    - aiida-pythonjob >=0.1.8
+    - aiida-pythonjob >=0.2.3
     - python >={{ python_min }}
     - numpy >=1.21,<2.dev0
     - scipy
     - ase
-    - node-graph ==0.1.27
+    - node-graph ==0.1.29
     - aiida-core >=2.3
     - cloudpickle
     - aiida-shell >=0.8,<1.dev0
