@@ -1,5 +1,5 @@
 {% set name = "aiida-workgraph" %}
-{% set version = "0.5.1" %}
+{% set version = "0.5.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/aiida_workgraph-{{ version }}.tar.gz
-  sha256: b6c9d7442b52245114b904711c2124f162255bd3c04f84c59b8e89b981705102
+  sha256: c075319bbb1f0686487acd51a4f1de44c9a5b5d4ec3b68a509e3118c86cf2e64
 
 build:
   entry_points:
