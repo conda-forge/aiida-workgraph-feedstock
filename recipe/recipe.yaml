@@ -1,0 +1,65 @@
+schema_version: 1
+
+context:
+  name: aiida-workgraph
+  version: "0.8.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/aiida_workgraph-${{ version }}.tar.gz
+  sha256: e30a9da73ffdd6643eee6217ff3a7a0b48a88c9bde358ad2d2e06230d93ebbbf
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - workgraph = aiida_workgraph.cli.cmd_workgraph:workgraph
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - flit-core >=3.4,<4
+    - pip
+  run:
+    - jsonschema
+    - node-graph-widget >=0.0.5
+    - aiida-pythonjob >=0.5.1,<0.6.dev0
+    - python >=${{ python_min }}
+    - numpy
+    - scipy
+    - ase
+    - node-graph >=0.6.5,<0.7.dev0
+    - aiida-core >=2.7.1,<2.8.dev0
+    - cloudpickle
+    - aiida-shell >=0.8,<1.dev0
+    - fastapi
+    - uvicorn
+    - pydantic-settings
+    - plumpy <=0.25.0
+
+tests:
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - verdi presto --profile-name test
+      - python -c "import aiida_workgraph"
+      - workgraph --help
+
+about:
+  summary: Design flexible node-based workflow for AiiDA calculation.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/aiidateam/aiida-workgraph
+
+extra:
+  recipe-maintainers:
+    - superstar54
+    - jan-janssen
